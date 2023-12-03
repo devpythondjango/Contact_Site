@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+<div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 20px;">
+    <div class="row py-5">
+        <div class="col-12 pt-lg-5 mt-lg-5 text-center">
+            <h1 class="display-4 text-white animated zoomIn">Ariza qoldirish</h1>
+            <a href="" class="h5 text-white">Samarqand</a>
+            <i class="far fa-circle text-white px-2"></i>
+            <a href="" class="h5 text-white">Kiberxavfsizlik</a>
+        </div>
+    </div>
+</div>
+{% endblock navbar %}
+
+{% block content %}
+<style>
+    .hidden {
+        display: none;
+    }
+
+</style>
+
+     <!-- Team Start -->
+     <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 1000px;">
+                <h1 class="mb-0">O'zbekiston Respublikasi ichki ishlar vazirligi</h1>
+                <h5 class="fw-bold text-primary text-uppercase">Kiberxavfsizlik</h5>
+            </div>
+            <form method="post" enctype="multipart/form-data" id="applicationForm">
+                {% csrf_token %}
+                <div class="row g-5 team-item bg-light rounded overflow-hidden">
+                    <div class="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                            <h5><label for="" class="">Familiya:</label></h5>
+                            <input type="text" name="last_name" class="form-control bg-transparent border-primary p-3" placeholder="Familiya">
+                            <h5><label for="" class="pt-3">Ism</label></h5>
+                            <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Ism" name="first_name">
+                            <h5><label for="" class="pt-3">Sharf</label></h5>
+                            <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Otasining ismi" name="surname">
+                            <h5><label for="" class="pt-3">Tug'ulgan sana</label></h5>
+                            <input type="date" class="form-control bg-transparent border-primary p-3" placeholder="01.01.2023" name="birthday">
+                            <h5><label for="" class="pt-3">Pasport seriya</label></h5>
+                            <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="AA1234567" name="passport_serial">
+                            <h5><label for="" class="">Tuman</label></h5>
+                            {{forms.district}}
+                            <h5><label for="" class="pt-3">Manzil</label></h5>
+                            <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="Manzil" name="address">
+                            <h5><label for="id_gender" class="pt-3">Jins</label></h5>
+                            {{forms.gender}}
+                    </div>
+                    <div class="col-lg-6 wow slideInUp" data-wow-delay="0.4s">
+                            <h5><label for="" class="">Hujum turi</label></h5>
+                            {{forms.hujumturi}}
+                            <div>
+                                <div id="div3" class="hidden ">
+                                    <h5><label for="" class="pt-3">Plasrik raqam</label></h5>
+                                    <input type="text" name="plastikraqam_ozi" class="form-control bg-transparent border-primary p-3" placeholder="Plastik raqam">
+                                    <h5><label for="" class="pt-3">Plastikdan pul yechilgan vaqt</label></h5>
+                                    <input type="datetime-local" id="id_vaqt" name="vaqt" value="{{ my_model_instance.vaqt|date:'Y-m-d\TH:i' }}" class="form-control bg-transparent border-primary p-3" />
+                                    <h5><label for="" class="pt-3">Plastikdan yechilgan pul miqdori</label></h5>
+                                    <input type="number" name="summa" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                    <h5><label for="" class="pt-3">Plastikdan yechilgan pulni cheki rasmi</label></h5>
+                                    <input type="file" name="rasm" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                    
+                                </div>
+                                <div id="div1" class="hidden ">
+                                    <h5><label for="" class="pt-3">Qanday ilova orqali yechilgan</label></h5>
+                                    <input type="text" name="ilova" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                </div>
+                                <div id="div2" class="hidden ">
+                                    <h5><label for="" class="pt-3">Gumondor plastik raqami</label></h5>
+                                    <input type="number" name="plastikraqam_gumondor" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                    <h5><label for="" class="pt-3">Gumondor ismi familiyasi</label></h5>
+                                    <input type="text" name="full_name_gumondor" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                    <h5><label for="" class="pt-3">Gumondor telefon raqami</label></h5>
+                                    <input type="number" name="phone_gumondor" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                    <h5><label for="" class="pt-3">Gumondor qanday ilova orqali yechgan</label></h5>
+                                    <input type="text" name="ilova_gumondor" class="form-control bg-transparent border-primary p-3" placeholder="">
+                                </div>
+                                
+                            </div>
+                             <!-- Telefon raqamini kiritish uchun input va SMSni kiritish uchun input -->
+                             <h5><label for="" class="pt-3">Telefon</label></h5>
+                             <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="998901234567" name="phone" required>
+                    </div>
+                    <div class="col-md-12 wow slideInUp" data-wow-delay="0.5s">
+                        <h5><label for="">Murojat mazmuni</label></h5>
+                        <textarea class="murojat border-primary" name="text" placeholder="Yozing..."></textarea>
+                    </div>
+                    <div class="col-6 col-lg-6 wow slideInUp" data-wow-delay="0.4s">
+                        <input type="checkbox" required> 
+                        <label for=""> Murojaat yuborish <a href="#">qoidalarini</a> qabul qildim</label>
+                    </div>
+                    <div class="col-6 col-lg-6 wow slideInUp pb-3 nav justify-content-end" data-wow-delay="0.4s">
+                        <a href="/" class="btn btn-danger" type="submit">Ortga</a>
+
+                         <!-- Yuborish tugmasi -->
+                        
+                        <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" >Saqlash</button>
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                <div class="mb-3">
+                                    <div id="sms" style="display: none;">
+                                        <h5><label for="recipient-name" class="pt-3">SMSni kiritng</label></h5>
+                                        <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="sms" name="smsCode" required id="recipient-name">
+                                    </div>
+                                    <div id="error-message" style="color: red; display: none;">
+                                        SMS kod xato.!
+                                    </div>
+                                    <div id="message" style="color: blue; display: none;">
+                                        SMS kod to'g'ri
+                                    </div>
+                                 </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" onclick="submitForm()" id="saqlash">Saqlash</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-dialog modal-dialog-centered">
+                    <form action="" method="post">
+                    
+                </form>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Team End -->
+
+    <script>
+        function showDiv(select) {
+            var selectedOption = select.value;
+            console.log(selectedOption)
+            // Hide all divs
+            for (var i = 1; i <= 3; i++) {
+                var divId = 'div' + i;
+                console.log(divId)
+                document.getElementById(divId).classList.add('hidden');
+            }
+    
+            // Show the selected div
+            if (selectedOption == 1) {
+                var selectedDivId = 'div1';
+                var selectedDivid = 'div3';
+                document.getElementById(selectedDivId).classList.remove('hidden');
+                document.getElementById(selectedDivid).classList.remove('hidden');
+            } else if (selectedOption == 2 ||  selectedOption == 3 || selectedOption == 4) {
+                var selectedDivId = 'div2';
+                var selectedDivid = 'div3';
+                document.getElementById(selectedDivId).classList.remove('hidden');
+                document.getElementById(selectedDivid).classList.remove('hidden');
+            }
+        }
+    </script>
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+     <script>
+        function submitForm() {
+            // Telefon raqamini tekshirish logikasi shu yerdan olinadi
+            var phoneNumberInput = document.querySelector('input[name="phone"]');
+            if (phoneNumberInput.value.trim() === "") {
+                alert("Telefon raqamini kiriting!");
+                return false;  // Formani yuborishni to'xtatish
+            } 
+    
+            // SMS kodi tekshirish logikasi shu yerdan olinadi
+            var smsCodeInput = document.querySelector('input[name="smsCode"]');
+            if (smsCodeInput.value.trim() === "") {
+                alert("SMS kodini kiriting!");
+                document.getElementById('sms').style.display = 'block';
+                return false;  // Formani yuborishni to'xtatish
+            }
+    
+            // Serverdan gelen SMS kodini tekshirish
+            var serverGeneratedSMSCode = '{{ server_generated_sms_code }}';
+            if (smsCodeInput.value.trim() !== serverGeneratedSMSCode) {
+                // SMS kodi xato
+                alert("SMS kodini to'g'ri kiriting!");
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('message').style.display = 'none';
+                return false;  // Formani yuborishni to'xtatish
+            }else{
+                // SMS kodi to'g'ri
+                document.getElementById('error-message').style.display = 'none';
+                document.getElementById('message').style.display = 'block';
+                document.getElementById('saqlash').type = 'submit'; // Saqlash tugmasini submit qilishga o'zgartirish
+        return true;
+            }
+    
+            // Formani yuborish
+            document.getElementById('applicationForm').submit();
+        }
+    </script>
+    
+    {% endblock content %}
+   

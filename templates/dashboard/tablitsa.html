@@ -1,0 +1,102 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Tablitsa{% endblock %}
+
+{% block content %}
+
+
+                  
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+        <!--Solid Buttons-->
+    
+        <div class="p-3">
+            <button class="bg-blue-500 hover:bg-blue-200 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-500 rounded">
+                3D Button
+            </button>
+            <button class="bg-white hover:bg-gray-500 text-gray-900 font-semibold py-2 px-4 border border-gray-200 rounded shadow">
+                Elevated Button
+            </button>
+            <button class="bg-gray-200 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+                <svg class="fill-current w-4 h-4 mr-2" xmlns=""
+                     viewBox="0 0 20 20">
+                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                </svg>
+                <span>Download</span>
+            </button>
+            <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+                Button
+            </button>
+        </div>
+    
+    <!--/Solid Buttons-->
+        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b fa-2x">
+            Barcha arizalar
+        </div>
+        <div class="p-3">
+            <table class="table-responsive w-full rounded">
+                <thead>
+                  <tr>
+                    <th class="border w-1/4 px-4 py-2">Ism familiya</th>
+                    <th class="border w-1/4 px-4 py-2">Telefon nomer</th>
+                    <th class="border w-1/4 px-4 py-2">Tug'ilgan yili</th>
+                    <th class="border w-1/4 px-4 py-2">Passpor seriyasi</th>
+                    <th class="border w-1/4 px-4 py-2">Tuman</th>
+                    <th class="border w-1/4 px-4 py-2">Manzil</th>
+                    <th class="border w-1/4 px-4 py-2">Jins</th>
+                    <th class="border w-1/4 px-4 py-2">Hujum turi</th>
+                    <th class="border w-1/4 px-4 py-2">Plastik raqami</th>
+                    <th class="border w-1/4 px-4 py-2">Plastik raqami gumondor </th>
+                    <th class="border w-1/4 px-4 py-2">Gumondor ismi familiyasi </th>
+                    <th class="border w-1/4 px-4 py-2">Gumondor telefon raqami</th>
+                    <th class="border w-1/4 px-4 py-2">Pul yechilgan sana</th>
+                    <th class="border w-1/4 px-4 py-2">Yechib olingan summa</th>
+                    <th class="border w-1/4 px-4 py-2">Pul yechib olingan chek</th>
+                    <th class="border w-1/4 px-4 py-2">Shaxs ishlatgan ilova</th>
+                    <th class="border w-1/4 px-4 py-2">Gumodor ishlatgan ilova</th>
+                    <th class="border w-1/4 px-4 py-2">Shaxs yozgan qisqa mazmuni</th>
+                    <th class="border w-1/4 px-5 py-2">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                    <tr>
+                        <td class="border px-4 py-2">{{application.first_name}} {{application.last_name}} {{application.surname}}</td>
+                        <td class="border px-4 py-2">{{application.phone}}</td>
+                        <td class="border px-4 py-2">{{application.birthday}}</td>
+                        <td class="border px-4 py-2">{{application.passport_serial}}</td>
+                        <td class="border px-4 py-2">{{application.district}}</td>
+                        <td class="border px-4 py-2">{{application.address}}</td>
+                        <td class="border px-4 py-2">{{application.gender}}</td>
+                        <td class="border px-4 py-2">{{application.hujumturi}}</td>
+                        <td class="border px-4 py-2">{{application.plastikraqam_ozi}}</td>
+                        <td class="border px-4 py-2">{{application.plastikraqam_gumondor}}</td>
+                        <td class="border px-4 py-2">{{application.full_name_gumondor}}</td>
+                        <td class="border px-4 py-2">{{application.phone_gumondor}}</td>
+                        <td class="border px-4 py-2">{{application.vaqt}}</td>
+                        <td class="border px-4 py-2">{{application.summa}} so'm</td>
+                        <td class="border px-4 py-2"><img src="{{application.get_image}}" alt="chek" style="width: 80px; height: 70px;" > </td>
+                        <td class="border px-4 py-2">{{application.ilova}}</td>
+                        <td class="border px-4 py-2">{{application.ilova_gumondor}}</td>
+                        <td class="border px-4 py-2">{{application.text}}</td>
+                        <td class="border px-4 py-2">
+                            <a class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white" style="color: blue;">
+                                <i class="fas fa-eye"></i>
+                            </a><br>
+                            <a class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white" style="color: blue;">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+

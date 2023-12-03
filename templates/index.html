@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+    <!-- Navbar & Carousel Start -->
+    
+
+        <div id="header-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{% static 'images/img4.jpg' %}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Samarqand viloyati</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">KIBERXAVFSIZLIK</h1>
+                            <p>ICHKI ISHLAR BOSHQARMASI TEZKOR QIDIRUV XIZMATI
+                                Internet tarmog'ida sodir etilayotgan kiberjinoyatlar bilan bog'liq xolatlar yuzasidan murojatlar uchun</p>
+                            <!-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Ariza yuborish</a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img class="w-100" src="{% static 'images/img1.jpeg' %}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h5 class="text-white text-uppercase mb-3 animated slideInDown">Samarqand viloyati</h5>
+                            <h1 class="display-1 text-white mb-md-4 animated zoomIn">KIBERXAVFSIZLIK</h1>
+                            <p>ICHKI ISHLAR BOSHQARMASI TEZKOR QIDIRUV XIZMATI
+                                Internet tarmog'ida sodir etilayotgan kiberjinoyatlar bilan bog'liq xolatlar yuzasidan murojatlar uchun</p>
+                            <!-- <a href="" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">Ariza yuborish</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    
+    <!-- Navbar & Carousel End -->
+    {% endblock navbar %}
+
+    
+    {% block content %}
+
+    <!-- Facts Start -->
+    <div class="container-fluid facts py-5 pt-lg-0">
+        <div class="container py-5 pt-lg-0">
+            <div class="row gx-0">
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.1s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Kiberhujumga uchraganlar</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">12345</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.3s">
+                    <div class="bg-light shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-check text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-primary mb-0">Yechimi topilganlari</h5>
+                            <h1 class="mb-0" data-toggle="counter-up">10340</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
+                    <div class="bg-primary shadow d-flex align-items-center justify-content-center p-4" style="height: 150px;">
+                        <div class="bg-white d-flex align-items-center justify-content-center rounded mb-2" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award text-primary"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="text-white mb-0">Yechimi topilmaganlari</h5>
+                            <h1 class="text-white mb-0" data-toggle="counter-up">2005</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Facts Start -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <div class="section-title position-relative pb-3 mb-5">
+                        <h1 class="mb-0">Kiberjinoyatchilar qurboni bo'lmang!</h1>
+                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                    </div>
+                   
+                    <div class="row g-0 mb-3">
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.2s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fishing</h5>
+                            <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
+                            <a href="">Batafsil...</a>
+                            <!-- <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>NIGERIYA POCHTASI</h5> -->
+                        </div>
+                        <div class="col-sm-6 wow zoomIn" data-wow-delay="0.4s">
+                            <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>NIGERIYA POCHTASI</h5>
+                            <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
+                            <a href="">Batafsil...</a>
+                            <!-- <h5 class="mb-3"><i class="fa fa-check text-primary me-3"></i>Fair Prices</h5> -->
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center mb-4 wow fadeIn" data-wow-delay="0.6s">
+                        <div class="bg-primary d-flex align-items-center justify-content-center rounded" style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt text-white"></i>
+                        </div>
+                        <div class="ps-4">
+                            <h5 class="mb-2">Bizga aloqaga chiqing</h5>
+                            <h4 class="text-primary mb-0">+998662311111
+                            </h4>
+                        </div>
+                    </div>
+                    <a href="/" class="btn btn-primary py-3 px-5 mt-3 wow zoomIn" data-wow-delay="0.9s">Ariza yuborish</a>
+                </div>
+                <div class="col-lg-5" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="{% static 'images/img3.jpg' %}" style="object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- Features Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 1000px;">
+                <h2 class="mb-0">BANK KARTALARIDAN MABLAG'LARNI TALON-TAROJ QILISHI BILAN BOG'LIQ JINOYATLAR QUYIDAGI 6 XIL USULLARDA SODIR ETILMOQDA</h2>
+                <h6 class="fw-bold text-primary text-uppercase">So'ngi vaqtlarda bank plastik kartalaridagi pullarni talon-taroj qilish bilan bog'liq bo'lgan jinoyatlarni sodir etilishi kundan-kunga ko'payib borayotganligi kuzatilmoqda. Xususan, viloyat xududida bank plastik kartalaridagi pullarni noqonuniy o'zlashtirishi bilan bog;liq murojatlar ko'paymoqda</h6>
+            </div>
+            <div class="row g-5">
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.2s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </div>
+                            <h4>Notanish telefon qo'ng'iroqlari</h4>
+                            <p class="mb-0">To'lov tashkilotlari ("Click" va b.), yoki bank xodimi sifatida telefon qilib yuborilgan maxfiy kodni olishga urinishadi.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-users-cog text-white"></i>
+                            </div>
+                            <h4>Moddiy yordam, onlayn kredit, yutuqli o'yin g'olibi kabi aldovlar bilan yuborilgan soxta xabarlar</h4>
+                            <p class="mb-0">Moddiy yordam, past narx va qulay imtiyozlar to'g'risida feyk ma'lumotlarni tarqatib, ularni qabul qilish uchun plastik kartq ma'lumotlarni so'rshadi.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.6s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-award text-white"></i>
+                            </div>
+                            <h4>Yalg'on investitsiya</h4>
+                            <p class="mb-0">O'zlarining mashxur kompaniya sifatida tanishtirib, ushbu kompaniyalarga investitsiyakiritish orqali tez va oson boyib ketishingizni aytib aldashadi.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4  wow zoomIn" data-wow-delay="0.9s" style="min-height: 350px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.1s" src="{% static 'images/img1.png' %}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="row g-5">
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.4s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-cubes text-white"></i>
+                            </div>
+                            <h4>Nigeriya xabarlari</h4>
+                            <p class="mb-0">Ijtimoiy tarmoqlar orqali siz bilan tanishishaddi va ishonchingizga kirib, sizga ko'p pul vada qilishadi, ushbu pullarni agent orqali yuborishlarini aytishadi va tasdiq sifatida suratlarni yuborishadi.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </div>
+                            <h4>Ijtimoiy tarmoqlar yoki savdo platformalarda yalg'on "sotuvchi" yoki "xaridor"</h4>
+                            <p class="mb-0">Ijtimoiy tarmoqlarda yoki savdo platformasida buyumlarnisotish,sotib olishxizmatlar ko'rsatish, shuningdek,
+                            turar-noturar joy, dala xovlilarni ijaraga berish xaqida soxta e'lonlar orqali shaxslarni ishonchiga kirib pullarini o'zlashtirib olish.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                        <div class="col-12 wow zoomIn" data-wow-delay="0.8s">
+                            <div class="bg-primary rounded d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                                <i class="fa fa-phone-alt text-white"></i>
+                            </div>
+                            <h4>Soxta onlayin birja va treyding</h4>
+                            <p class="mb-0">Ijtimoiy tarmoqlarda "dabdabali xayot" aks etgan e'lonlar joylashtrib, fuqoralarni jalb qilmoqda.</p>
+                            <a class="btn btn-primary" href="">Ariza yuborish</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Features Start -->
+
+    <!-- Vendor Start -->
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5 mb-5">
+            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
+                <h1 class="mb-0">Foydali saytlar ro'yxati</h1>
+                <h5 class="fw-bold text-primary text-uppercase">Latest Blog</h5>
+            </div>
+            <div class="bg-white">
+                <div class="owl-carousel vendor-carousel">
+                   <a href=""> <img src="{% static 'images/vendor-1.jpg' %}" alt="."></a>
+                    <a href=""><img src="{% static 'images/vendor-2.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-3.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-4.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-5.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-6.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-7.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-8.jpg' %}" alt=""></a>
+                    <a href=""><img src="{% static 'images/vendor-9.jpg' %}" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Vendor End -->
+    
+    {% endblock content %}
