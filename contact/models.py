@@ -58,14 +58,12 @@ class Application(models.Model):
         return self.rasm.url if self.rasm else static('')
 
 class ApplicationCreate(models.Model):
-    application = models.ForeignKey(Application, on_delete=models.CASCADE, null=True, blank=True)
+    application = models.ForeignKey(Application, on_delete=models.SET_NULL, null=True, blank=True)
     update = models.DateTimeField(auto_now=True)
     createdate = models.DateTimeField(auto_now_add=True)
     body = models.TextField(null=True, blank=True)
     STATUS_CHOICES = (
         ('yangi', 'Yangi'),
-        ('tekshirilmoqda', 'Tekshirilmoqda'),
-
         ('tekshirilmoqda', 'Tekshirilmoqda'),
         ('rad etildi', 'Rad etildi'),
         ('tekshirildi', 'Tekshirildi'),

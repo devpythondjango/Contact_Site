@@ -11,7 +11,7 @@ from django.views import View
 # Create your views here.
 
 
-def login_decorator(func):
+def login_decorator(func): 
     return login_required(func, login_url='login')
 
 
@@ -43,7 +43,7 @@ class ProfileView(View):
 
     def get(self, request):
         context = {'profile': self.profile, 'segment': 'profile'}
-        return render(request, 'users/profile.html', context)
+        return render(request, 'dashboard/profile.html', context)
 
     def post(self, request):
         form = ProfileForm(request.POST, request.FILES, instance=self.profile)
@@ -57,10 +57,15 @@ class ProfileView(View):
         return redirect('profile')
 
 
+@login_decorator
 def dashboard(request):
-    return render(request, 'dashboard/index.html')
+    app_count = Application.objects.count()
+    app_status = ApplicationCreate.objects.filter(status=1)
+    ctx = {'app_count': app_count}
+    return render(request, 'dashboard/index.html', ctx)
 
 
+@login_decorator
 def tablitsa(request):
     applications = Application.objects.all()
     application_create = ApplicationCreate.objects.all()

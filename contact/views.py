@@ -8,7 +8,7 @@ import random
 from django.conf import settings
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'users/index.html')
 
 # Bu yerda serverda saqlanadigan sms_code ni belgilash uchun o'zgaruvchi
 server_generated_sms_code = None
@@ -20,7 +20,7 @@ def send_sms(request):
         phone = data.get('phone')
         sms_code = data.get('smsCode')
         print('tel', phone)
-        send_sms_to_user(phone)
+        # send_sms_to_user(phone)
         # Bu joyda sms_code ni to'g'ri tekshirishni bajarishingiz kerak
         if sms_code == server_generated_sms_code:
             server_generated_sms_code = None  # Solishtirilgandan so'ng o'zgaruvchini tozalash
@@ -36,6 +36,10 @@ def ariza(request):
     if request.method == 'POST':
         forms = ApplicationForm(request.POST, request.FILES)
         response = send_sms(request)
+        data = request.POST
+        phone = data.get('phone')
+        print(phone)
+        # send_sms_to_user(phone)
         if response.get('success', True):
             if forms.is_valid():                
                 try:
@@ -86,11 +90,3 @@ def send_sms_to_user(phone_number):
     res = conn.getresponse()
     data = res.read()
     # print(data.decode("utf-8"))
-        
-
-     
-
-
-
-
-

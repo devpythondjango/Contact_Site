@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-y$l2gjh#0$v)gik$e7a%6dn2sk5gol$2e%89940btj77u+83*-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG=True
 
 ALLOWED_HOSTS = ['*']
 
@@ -124,5 +126,6 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BASE_URL = "vv6yr1.api.infobip.com"
-API_KEY = "App 68faef508f8a97142725dd5a6b191de1-9ad12951-19e3-475e-9391-41f394a246c1"
+BASE_URL = 'vv6yr1.api.infobip.com'
+
+API_KEY = 'App 68faef508f8a97142725dd5a6b191de1-9ad12951-19e3-475e-9391-41f394a246c1'

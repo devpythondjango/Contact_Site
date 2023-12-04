@@ -5,7 +5,7 @@ from django.templatetags.static import static
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
-    avatar = models.ImageField(upload_to="media/profiles/", null=True, blank=True)
+    avatar = models.ImageField(upload_to="profiles/", null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     phone = models.CharField(max_length=32, null=True, blank=True)
 
@@ -14,4 +14,4 @@ class Profile(models.Model):
 
     @property
     def get_avatar(self):
-        return self.avatar.url if self.avatar else static("dashboard/dist/img/user2-160x160.jpg")
+        return self.avatar.url if self.avatar else static("images/logo/default-profile-picture.png")

@@ -2,18 +2,18 @@
   <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
 
     <ul class="list-reset flex flex-col">
-        <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
+        <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white {% if 'dashboard' in segment %} active {% endif %}">
             <a href="{% url 'dashboard' %}"
                class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
                 <i class="fas fa-tachometer-alt float-left mx-2"></i>
                 Dashboard
             </a>
         </li>
-        <li class="w-full h-full py-3 px-2 border-b border-light-border">
+        <li class="w-full h-full py-3 px-2 border-b border-light-border {% if 'tablitsa' in segment %} active {% endif %}">
             <a href="{% url 'tablitsa' %}"
                class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
                 <i class="fas fa-table float-left mx-2"></i>
-                Tables
+                Arizalar
             </a>
         </li>
         <li class="w-full h-full py-3 px-2 border-b border-light-border">
