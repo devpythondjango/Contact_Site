@@ -53,7 +53,7 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
+                    <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-telegram fw-normal"></i></a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
                     <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
                 </div>
@@ -70,9 +70,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="/" class="nav-item nav-link active">Bosh saxifa</a>
-                    <a href="{% url 'ariza' %}" class="nav-item nav-link">Ariza</a>
-                    <a href="#footer" class="nav-item nav-link">Aloqa</a>
+                    <a href="/" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Bosh saxifa</a>
+                    <a href="{% url 'ariza' %}" class="nav-item nav-link {% if request.path == '/ariza/' %}active{% endif %}">Ariza</a>
+                    <a href="#footer" class="nav-item nav-link {% if request.path == '/#footer/' %}active{% endif %}">Aloqa</a>
                 </div>
                 <butaton type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></butaton>
             </div>

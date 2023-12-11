@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 
-
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +39,8 @@ INSTALLED_APPS = [
 
     'contact',
     'dashboard',
+
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -106,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 
 USE_I18N = True
 
@@ -129,3 +129,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 BASE_URL = 'vv6yr1.api.infobip.com'
 
 API_KEY = 'App 68faef508f8a97142725dd5a6b191de1-9ad12951-19e3-475e-9391-41f394a246c1'
+
+SENDER = "PYTHON"
+
+
+RECAPTCHA_PUBLIC_KEY = '6LfRlSwpAAAAAHGobkyn3ydW61fzskp6xAxXVcKf'
+RECAPTCHA_PRIVATE_KEY = '6LfRlSwpAAAAAK6rjgn-_N4yAW4WnouDBX86a2yt'

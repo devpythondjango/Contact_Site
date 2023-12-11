@@ -1,0 +1,154 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Tablitsa{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'dashboard/dist/style2.css' %}">
+
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+        <!--/Solid Buttons-->
+        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b ">
+            <p class="text fa-2x ">{{application.first_name}} {{application.surname}} {{application.last_name}} - arizasi</p>
+            <div class="select-container">
+                <div class=" right">
+                    <a href="#" class="px-1 inline-flex items-center yuklash bg-blue-400">
+                        <svg class="fill-current w-3 h-3 mr-2" xmlns=""
+                             viewBox="0 0 20 20">
+                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                        </svg>
+                        Word
+                    </a>
+                    <a href="{% url 'export_to_excel_id' pk=application.id %}" class="px-1 inline-flex items-center yuklash bg-blue-400">
+                        <svg class="fill-current w-3 h-3 mr-2" xmlns=""
+                             viewBox="0 0 20 20">
+                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                        </svg>
+                        Excel
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+        <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+            <div class="mb-2 border-solid border-gray-300 rounded shadow-sm w-full">
+                {% if application.hujumturi.id == 1 %}
+                {% if application.app_create.status == 'yangi' %}
+                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-300 border-b">
+                    Ariza holati - <b class="text-blue-dark">{{application.app_create.status}}</b>
+                </div>
+                {% endif %}
+                <div class="p-1 flex flex-1 flex-col md:flex-row lg:flex-row justify-between md:mx-2 lg:mx-2">
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 ">Arizachi yuborgan malumotlar</div>
+                            <p class="text-gray-900 text-base">Hujum turi: <b>{{application.hujumturi}}</b></p>
+                            <p class="text-gray-900 text-base">Tuman: <b>{{application.district.tuman_name}}</b></p>
+                            <p class="text-gray-900 text-base">Manzil: <b>{{application.address}}</b></p>
+                            <p class="text-gray-900 text-base">Tug'ilgan yil: <b>{{application.birthday}}</b></p>
+                            <p class="text-gray-900 text-base">Pasport seria <b>{{application.passport_serial}}</b></p>
+                            <p class="text-gray-900 text-base">Plastik raqam: <b>{{application.plastikraqam_ozi}}</b>
+                            </p>
+                            <p class="text-gray-900 text-base">Pul yechilgan vaqt: <b>{{application.vaqt}}</b></p>
+                            <p class="text-gray-900 text-base">Pul yechilgan summa: <b>{{application.summa}} so'm</b>
+                            </p>
+                        </div>
+                        <!--                        <div class="px-6 py-4">-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker mr-2">#photography</span>-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker mr-2">#travel</span>-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker">#winter</span>-->
+                        <!--                        </div>-->
+                    </div>
+                    <!-- horizontal card -->
+                    <div class="max-w-md w-full lg:flex lg:mx-2 md:mx-2">
+                        <div class="h-40 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                             title="Pul yechib olingan chek">
+                            <img src="{{application.get_image}}" alt="chek" style="width: 100%; height: 100%;">
+                        </div>
+                        <div class="border-r border-b border-l border-gray-300 lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            <div class="flex items-center">
+                                <div class="text-sm">
+                                    <p class="text-gray-900 text-base"><b>Pul yechib olingan ilova:</b>
+                                        {{application.ilova_gumondor}}</p>
+                                    <b>Shaxsni arizaga qisqa mazmuni:</b>
+                                    <p class="text-gray-dark">{{application.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /horizontal card -->
+                </div>
+                {% else %}
+                {% if application.app_create.status == 'yangi' %}
+                <div class="bg-gray-200 px-2 py-3 border-solid border-gray-300 border-b">
+                    Ariza holati - <b class="text-blue-dark">{{application.app_create.status}}</b>
+                </div>
+                {% endif %}
+                <div class="p-1 flex flex-1 flex-col md:flex-row lg:flex-row justify-between md:mx-2 lg:mx-2">
+                    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2 ">Arizachi yuborgan malumotlar</div>
+                            <p class="text-gray-900 text-base">Hujum turi: <b>{{application.hujumturi}}</b></p>
+                            <p class="text-gray-900 text-base">Tuman: <b>{{application.district.tuman_name}}</b></p>
+                            <p class="text-gray-900 text-base">Manzil: <b>{{application.address}}</b></p>
+                            <p class="text-gray-900 text-base">Tug'ilgan yil: <b>{{application.birthday}}</b></p>
+                            <p class="text-gray-900 text-base">Pasport seria <b>{{application.passport_serial}}</b></p>
+                            <p class="text-gray-900 text-base">Plastik raqam: <b>{{application.plastikraqam_ozi}}</b>
+                            </p>
+                            <p class="text-gray-900 text-base">Pul yechilgan vaqt: <b>{{application.vaqt}}</b></p>
+                            <p class="text-gray-900 text-base">Pul yechilgan summa: <b>{{application.summa}} so'm</b>
+                            </p>
+                        </div>
+                        <!--                        <div class="px-6 py-4">-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker mr-2">#photography</span>-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker mr-2">#travel</span>-->
+                        <!--                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-darker">#winter</span>-->
+                        <!--                        </div>-->
+                    </div>
+                    <!-- horizontal card -->
+                    <div class="max-w-md w-full lg:flex lg:mx-2 md:mx-2">
+                        <div class="h-40 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                             title="Pul yechib olingan chek">
+                            <img src="{{application.get_image}}" alt="chek" style="width: 100%; height: 100%;">
+                        </div>
+                        <div class="border-r border-b border-l border-gray-300 lg:border-l-0 lg:border-t lg:border-gray-300 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            <div class="mb-2">
+                                <p>Gumondor ismi:</p>
+                                <div class="text-black-500 font-bold text-lg mb-2">{{application.full_name_gumondor}}
+                                </div>
+                                <p class="text-sm text-gray-700 flex items-center">
+                                    <b>Gumondor plastik raqami:</b> {{application.plastikraqam_gumondor}}
+                                </p>
+                                <p class="text-gray-700 text-base"><b>Gumondor telefon raqami:</b>
+                                    {{application.phone_gumondor}}</p>
+                                <p class="text-gray-700 text-base"><b>Gumodor ishlatgan ilova:</b>
+                                    {{application.ilova_gumondor}}</p>
+
+                            </div>
+                            <div class="flex items-center">
+                                <div class="text-sm">
+                                    <b>Shaxsni arizaga qisqa mazmuni</b>
+                                    <p class="text-gray-dark">{{application.text}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- /horizontal card -->
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--/Grid Form-->
+</div>
+{% endblock content %}
+

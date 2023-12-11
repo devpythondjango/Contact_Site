@@ -1,0 +1,334 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block title %}Tablitsa{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'dashboard/dist/style2.css' %}">
+ <!--Grid Form-->
+
+ <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+            {% if application.app_create.status == 'yangi' %}
+                Ariza holati <b class="text-info-dark">{{application.app_create.status}}</b>
+            {% elif application.app_create.status == 'tekshirilmoqda' %}
+                Ariza holati <b class="text-warning">{{application.app_create.status}}</b>
+            {% elif application.app_create.status == 'tekshirildi' %}
+                Ariza holati <b class="text-success">{{application.app_create.status}}</b>
+            {% elif application.app_create.status == 'rad etildi' %}
+                Ariza holati <b class="text-red">{{application.app_create.status}}</b>
+            {% elif application.app_create.status == 'ma\'lumot topilmadi' %}
+                Ariza holati <b class="text-yellow-900">{{application.app_create.status}}</b>
+            {% endif %}
+            <div class="select-container">
+                <div class=" right">
+                    <a href="#" class="px-1 inline-flex items-center yuklash bg-blue-400">
+                        <svg class="fill-current w-3 h-3 mr-2" xmlns=""
+                             viewBox="0 0 20 20">
+                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                        </svg>
+                        Word
+                    </a>
+                    <a href="{% url 'export_to_excel_id' pk=application.id %}" class="px-1 inline-flex items-center yuklash bg-blue-400">
+                        <svg class="fill-current w-3 h-3 mr-2" xmlns=""
+                             viewBox="0 0 20 20">
+                            <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                        </svg>
+                        Excel
+                    </a>
+                </div>
+    
+            </div>
+        </div>
+        
+        <div class="p-3">
+            <form method="POST" enctype="multipart/form-data" class="w-full">
+                {% csrf_token %} 
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-first-name">
+                            Ismi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.first_name}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Familiyasi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.last_name}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Otasini ismi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.surname}}">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-first-name">
+                            Tug'ilgan yili/sanasi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.birthday}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Pasport seriasi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.passport_serial}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Tumani
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.district.tuman_name}}">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-first-name">
+                            Manzili
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.address}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Jinsi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.gender}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Hujum turi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.hujumturi}}">
+                    </div>
+                </div>
+                {% if application.hujumturi.id == 1 %}
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-first-name">
+                            Plastik raqami
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.plastikraqam_ozi}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Plastikdan pul yechilgan vaqt
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.vaqt}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Plastikdan yechib olingan summa
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.summa}}">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-first-name">
+                            Pul yechib olingan ilova
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.ilova}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Arizani mazmuni
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.text}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Telefon no'meri
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.phone}}">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class=" lg:h-auto lg:w-64 px-3 "
+                         title="Pul yechib olingan chek">
+                        <img src="{{application.get_image}}" alt="chek" style="width: 100%; height: 100%;">
+                    </div>
+                </div>
+
+                {% else %}
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-first-name">
+                            Plastik raqami
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.plastikraqam_ozi}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Plastikdan pul yechilgan vaqt
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.vaqt}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-2x font-normal mb-1"
+                               for="grid-last-name">
+                            Plastikdan yechib olingan summa
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.summa}}">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-first-name">
+                            Gumondor plastik raqami
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.plastikraqam_gumondor}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Gumondor ismi familiyasi
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.full_name_gumondor}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                               Gumondor telefon no'meri
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.phone_gumondor}}">
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-first-name">
+                               Gumondor pul yechib olingan ilova
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-first-name" type="text" readonly value="{{application.ilova_gumondor}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Arizani mazmuni
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.text}}">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Telefon no'meri
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{application.phone}}">
+                    </div>
+                </div>
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    <div class=" lg:h-auto lg:w-64 px-3 "
+                         title="Pul yechib olingan chek">
+                        <img src="{{application.get_image}}" alt="chek" style="width: 100%; height: 100%;">
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-last-name">
+                            Arizani mazmuni
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-grey-darker border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white-500 focus:border-gray-600"
+                               id="grid-last-name" type="text" readonly value="{{app_create.body}}">
+                    </div>
+                </div>
+
+                {% endif %}
+
+                <div class="flex flex-wrap -mx-3 mb-2">
+                    
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-dark text-1x font-normal mb-1"
+                               for="grid-state">
+                            Ariza holati
+                        </label>
+                        <div class="relative">
+                            {{form.status}}
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-grey-darker">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                     viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0" hidden>
+                        <label class="block uppercase tracking-wide text-gray-900 text-1x font-normal mb-1"
+                               for="grid-first-name">
+                               Ism familiyasi
+                        </label>
+                       {{form.application}}
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <label class="block uppercase tracking-wide text-grey-900 text-1x font-normal mb-1"
+                               for="grid-password">
+                            Arizaga Adminni qisqa so'zi
+                        </label>
+                        <textarea class="appearance-none block w-full bg-grey-900 text-grey-900 border border-grey-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-grey-dark" name="body" id="" cols="30" rows="5"></textarea>
+                        <p class="text-grey-dark text-1x italic"></p>
+                    </div>
+                </div>
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Button
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--/Grid Form-->
+
+{% endblock content %}
+

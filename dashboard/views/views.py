@@ -3,15 +3,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.utils.decorators import method_decorator
 from contact.models import Application, ApplicationCreate
-from .models import Profile
-from .forms import ProfileForm
+from dashboard.models import Profile
+from dashboard.forms import ProfileForm
 from django.views import View
 
 
-# Create your views here.
-
-
-def login_decorator(func): 
+def login_decorator(func):
     return login_required(func, login_url='login')
 
 
@@ -54,20 +51,23 @@ class ProfileView(View):
             profile.user.email = form.cleaned_data.get('email')
             profile.user.save()
 
-        return redirect('profile')
+        return redirect('dashboard')
 
 
 @login_decorator
 def dashboard(request):
     app_count = Application.objects.count()
-    app_status = ApplicationCreate.objects.filter(status=1)
-    ctx = {'app_count': app_count}
+    app_status_yangi = ApplicationCreate.objects.filter(status='yangi').count()
+    app_status_tekshirilmoqda = ApplicationCreate.objects.filter(status='tekshirilmoqda').count()
+    app_status_tekshirildi = ApplicationCreate.objects.filter(status='tekshirildi').count()
+    app_status_rad_etildi = ApplicationCreate.objects.filter(status='rad etildi').count()
+    app_status_mal_topilmadi = ApplicationCreate.objects.filter(status='ma\'lumot topilmadi').count()
+    ctx = {
+        'app_count': app_count,
+        'app_status_yangi': app_status_yangi,
+        'app_status_tekshirilmoqda': app_status_tekshirilmoqda,
+        'app_status_tekshirildi': app_status_tekshirildi,
+        'app_status_rad_etildi': app_status_rad_etildi,
+        'app_status_mal_topilmadi': app_status_mal_topilmadi,
+    }
     return render(request, 'dashboard/index.html', ctx)
-
-
-@login_decorator
-def tablitsa(request):
-    applications = Application.objects.all()
-    application_create = ApplicationCreate.objects.all()
-    ctx = {'applications': applications, 'application_create': application_create}
-    return render(request, 'dashboard/tablitsa.html', ctx)

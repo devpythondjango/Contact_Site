@@ -1,59 +1,94 @@
-  <!--Sidebar-->
-  <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
+<!--Sidebar-->
+{% load static %}
+
+<aside id="sidebar" class="bg-side-nav bg-gray-400 w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
 
     <ul class="list-reset flex flex-col">
-        <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white {% if 'dashboard' in segment %} active {% endif %}">
+        <li class=" w-full h-full py-3 px-2 border-b border-light-border  {% if request.path == '/dashboard/' %}bg-gray-500{% endif %}">
             <a href="{% url 'dashboard' %}"
-               class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
+                   class="font-serif font-hairline hover:font-black text-base text-black-dark no-underline fa-1x">
                 <i class="fas fa-tachometer-alt float-left mx-2"></i>
                 Dashboard
             </a>
         </li>
-        <li class="w-full h-full py-3 px-2 border-b border-light-border {% if 'tablitsa' in segment %} active {% endif %}">
+        <li class="w-full h-full py-3 px-2 border-b border-light-border {% if request.path == '/dashboard/tablitsa/' %}bg-gray-400{% endif %}">
             <a href="{% url 'tablitsa' %}"
-               class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
+               class="font-serif font-hairline hover:font-black text-base text-black-dark no-underline fa-1x">
                 <i class="fas fa-table float-left mx-2"></i>
                 Arizalar
+
+                <ul class="list-reset -mx-2 bg-white-medium-dark bg-gray-300">
+                    <li class="border-t mt-2 hover:bg-grey border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'tablitsa' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Hamma arizalar
+                        </a>
+                    </li>
+                    <li class="border-t mt-2 hover:bg-grey-dark border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/yangi/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'status_yangi' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Yangi arizalar
+                        </a>
+                    </li>
+                    <li class="border-t hover:bg-grey-dark border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/tekshirilmoqda/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'status_tekshirilmoqda' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Tekshirilmoqda
+                        </a>
+                    </li>
+                    <li class="border-t hover:bg-grey-dark border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/tekshirildi/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'status_tekshirildi' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Tekshirildi
+                        </a>
+                    </li>
+                    <li class="border-t hover:bg-grey-dark border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/rad_etildi/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'status_rad_etildi' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Rad etildi
+                        </a>
+                    </li>
+                    <li class="border-t hover:bg-grey-dark border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/tablitsa/malumot_topilmadi/' %}bg-gray-500{% endif %}">
+                        <a href="{% url 'status_malumot_topilmadi' %}"
+                           class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                            &nbsp;&nbsp;&nbsp;Ma'lumoti topilmadi
+                        </a>
+                    </li>
+                </ul>
             </a>
         </li>
-        <li class="w-full h-full py-3 px-2 border-b border-light-border">
-            <a href=""
-               class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
-                <i class="fab fa-wpforms float-left mx-2"></i>
-                Forms
-            </a>
-        </li>
-        <li class="w-full h-full py-3 px-2 border-b border-light-border">
-            <a href=""
-               class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
-                <i class="fas fa-grip-horizontal float-left mx-2"></i>
-                Buttons
-            </a>
-        </li>
+<!--        <li class="w-full h-full py-3 px-2 border-b border-light-border">-->
+<!--            <a href=""-->
+<!--               class="font-serif font-hairline hover:font-black text-3xl text-black-dark no-underline fa-13x">-->
+<!--                <i class="fab fa-wpforms float-left mx-2"></i>-->
+<!--                Forms-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li class="w-full h-full py-3 px-2 border-b border-light-border">-->
+<!--            <a href=""-->
+<!--               class="font-serif font-hairline hover:font-black text-3xl text-black-dark no-underline fa-13x">-->
+<!--                <i class="fas fa-grip-horizontal float-left mx-2"></i>-->
+<!--                Buttons-->
+<!--            </a>-->
+<!--        </li>-->
         <li class="w-full h-full py-3 px-2">
             <a href="#"
-               class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
+               class="font-serif font-hairline hover:font-black text-base text-black-dark no-underline fa-1x">
                 <i class="far fa-file float-left mx-2"></i>
                 Profile
-                <span><i class="fa fa-angle-down float-right"></i></span>
+<!--                <span><i class="fa fa-angle-down float-right"></i></span>-->
             </a>
-            <ul class="list-reset -mx-2 bg-white-medium-dark">
-                <li class="border-t mt-2 border-light-border w-full h-full px-2 py-3">
-                    <a href=""
-                       class="mx-4 font-sans font-hairline hover:font-normal text-sm text-purple-darker no-underline fa-13x">
-                        My profile
+            <ul class="list-reset -mx-2 bg-white-medium-dark bg-gray-300">
+                <li class="border-t mt-2 hover:bg-grey border-light-border w-full h-full px-2 py-3 {% if request.path == '/dashboard/profile/' %}bg-gray-500{% endif %}">
+                    <a href="{% url 'profile' %}"
+                       class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                        &nbsp;&nbsp;&nbsp;My profile
                     </a>
                 </li>
-                <li class="border-t border-light-border w-full h-full px-2 py-3">
-                    <a href=""
-                       class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
-                       settings
-                    </a>
-                </li>
-                <li class="border-t border-light-border w-full h-full px-2 py-3">
-                    <a href=""
-                       class="mx-4 font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline fa-13x">
-                       Logout
+                <li class="border-t mt-2 hover:bg-grey border-light-border w-full h-full px-2 py-3">
+                    <a href="{% url 'logout' %}"
+                       class="mx-4 font-serif font-hairline hover:font-medium text-sm text-purple-darker no-underline fa-1x">
+                        &nbsp;&nbsp;&nbsp;Logout
                     </a>
                 </li>
             </ul>

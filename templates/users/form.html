@@ -136,19 +136,7 @@
                         <div class="row justify-content-center">
                             <div class="col-md-4">
                                 <h5><label for="" class="pt-3">Telefon</label></h5>
-                                <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="998901234567" name="phone" required>
-                            </div>
-                            <div class="col-md-4">
-                                <div id="sms" style="display: none;">
-                                    <h5><label for="recipient-name" class="pt-3">SMSni kiritng</label></h5>
-                                    <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="sms" name="smsCode" required id="recipient-name">
-                                </div>
-                                <div id="error-message" style="color: red; display: none;">
-                                    SMS kod xato!
-                                </div>
-                                <div id="message" style="color: blue; display: none;">
-                                    SMS kod to'g'ri
-                                </div>
+                                <input type="text" class="form-control bg-transparent border-primary p-3" placeholder="+998901234567" name="phone" required>
                             </div>
                         </div>
                             
@@ -196,44 +184,6 @@
         }
     </script>
      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-     <script>
-        function submitForm() {
-            // Telefon raqamini tekshirish logikasi shu yerdan olinadi
-            var phoneNumberInput = document.querySelector('input[name="phone"]');
-            if (phoneNumberInput.value.trim() === "") {
-                return false;  // Formani yuborishni to'xtatish
-            } 
-    
-            // SMS kodi tekshirish logikasi shu yerdan olinadi
-            var smsCodeInput = document.querySelector('input[name="smsCode"]');
-            var serverGeneratedSMSCode = '{{ server_generated_sms_code }}';
-            if (smsCodeInput.value.trim() === "") {
-                alert("Telefon nomeriga sms kod bordi!");
-                document.getElementById('sms').style.display = 'block';
-                return false;  // Formani yuborishni to'xtatish
-            }else if (smsCodeInput.value.trim() !== serverGeneratedSMSCode){
-                // SMS kodi xato
-                alert("SMS kodini to'g'ri kiriting!");
-                document.getElementById('error-message').style.display = 'block';
-                document.getElementById('message').style.display = 'none';
-                return false;  // Formani yuborishni to'xtatish
-            }
-    
-            // Serverdan gelen SMS kodini tekshirish
-           
-            if (smsCodeInput.value.trim() == serverGeneratedSMSCode){
-                // SMS kodi to'g'ri
-                document.getElementById('error-message').style.display = 'none';
-                document.getElementById('message').style.display = 'block';
-                document.getElementById('saqlash').type = 'submit'; // Saqlash tugmasini submit qilishga o'zgartirish
-        return true;
-            }
-    
-            // Formani yuborish
-            document.getElementById('applicationForm').submit();
-        }
-    </script>
     
     {% endblock content %}
    

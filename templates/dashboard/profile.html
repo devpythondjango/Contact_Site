@@ -2,13 +2,148 @@
 {% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'dashboard/dist/profile.css' %}">
 
-<!-- Stats Row Starts Here -->
-<div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-    
+<!-- Card Sextion Starts Here -->
+<div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+    <!--Horizontal form-->
+    <div class="mb-2 border-solid border-gray-200 rounded  shadow-sm w-full md:w-1/2 lg:w-1/2">
+        <div class="display-item">
+            <div class="card anabelle">
+              <div class="card-top">
+                <img src="{{ profile.get_bg_avatar }}" alt="" style="width: 100%; height: 100%;">
+              </div>
+              <div class="card-profile">
+                
+                <div class="profile-image">
+                   <img src="{{ profile.get_avatar }}" alt="" style="width: 100%; height: 100%;">
+                </div>
+              </div>
+              <div class="card-info">
+                <div class="info-title">
+                  <h2>{{ profile.user.first_name }} {{profile.user.last_name}} {{ profile.user.email }}</h2>
+                  <h3>Admin</h3>
+                </div>
+                <div class="info-follow">
+                  <div class="follow-followers">
+                    <span>Telefon</span><br />
+                    <span>{{ profile.phone }}</span>
+                  </div>
+                  <div class="follow-following">
+                    <span>Tug'ilgan yil</span><br />
+                    <span>11.09.1999</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>  
+    </div>
+    <!--/Horizontal form-->
+
+    <!--Underline form-->
+    <div class="mb-2 md:mx-2 lg:mx-2 border-solid border-gray-300 rounded  shadow-sm w-full md:w-1/2 lg:w-1/2">
+        <div class="p-3">
+            <form method="post" enctype="multipart/form-data" class="w-full">
+                {% csrf_token %}
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                               Username:
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="text" value="{{profile.user.username}}" name="username">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Familiya:
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="text" value="{{profile.user.last_name}}" name="last_name">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Ism:
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="text" value="{{profile.user.first_name}}" name="first_name">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Email:
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="email" value="{{profile.user.email}}" name="email">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Tug'ilgan yil:
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                         type="text" value="{{ profile.birthday|date:'m/d/Y'|default:'' }}" name="birthday">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Telefon no'mer
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="tel" value="{{ profile.phone }}" name="phone">
+                    </div>
+                </div>
+                <!-- <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Rasm
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="file" name="avatar">
+                    </div>
+                </div>
+                <div class="md:flex md:items-center mb-6">
+                    <div class="md:w-1/4">
+                        <label class="block text-gray-500 font-regular md:text-right mb-1 md:mb-0 pr-4">
+                            Orqa rasm
+                        </label>
+                    </div>
+                    <div class="md:w-3/4">
+                        <input class="bg-grey-200 appearance-none border-1 border-grey-200 rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple-light"
+                        type="file" name="bg_avatar">
+                    </div>
+                </div> -->
+                <!-- <div class="md:flex md:items-center">
+                        <button class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                           Saqlash
+                        </button>
+                </div> -->
+            </form>
+        </div>
+    </div>
+    <!--/Underline form-->
 </div>
-
-<!-- /Stats Row Ends Here -->
+<!-- /Cards Section Ends Here -->
 {% endblock content %}
 
 

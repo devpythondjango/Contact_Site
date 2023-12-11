@@ -1,0 +1,86 @@
+{% extends 'users/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 1000px;">
+            <h1 class="mb-0">Telefon raqamizga borgan sms kodni kiriting</h1>
+            <h5 class="fw-bold text-primary text-uppercase">Kiberxavfsizlik</h5>
+        </div>
+        <form method="post" action="{% url 'verify_sms_code' %}" enctype="multipart/form-data" id="applicationForm">
+            {% csrf_token %}
+            <div class="row g-5 team-item bg-light rounded overflow-hidden">
+                <div class="col-lg-12 wow slideInUp" data-wow-delay="0.3s">
+                    <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <div id="sms">
+                                <h5><label class="pt-3">SMSni kiritng</label></h5>
+                                {{ sms_verification_form.sms_code }}
+                            </div>
+                            <div id="message" style="color: blue; display: none;">
+                                SMS kod to'g'ri <br>
+                                {{ sms_verification_form.captcha }} <br>
+
+                                <img id="captchaImage" src="{% url 'generate_captcha' %}" alt="Captcha">
+                                <input class="form-control" type="text" id="captcha" name="captcha" required>
+                            </div>
+                            <div id="error-message" style="color: red; display: none;">
+                                SMS kod xato!
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-6 col-lg-6 wow slideInUp pb-3 nav justify-content-end" data-wow-delay="0.4s">
+                        <button id="btn" type="button" class="btn btn-primary" onclick="submitForm()">Yuborish</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function submitForm() {
+        var smsCodeInput = document.querySelector('input[name="sms_code"]');
+        var serverGeneratedSMSCode = '{{ kod }}';
+        var captchaInput = document.getElementById('id_captcha_1');
+        var errorMessage = document.getElementById('error-message');
+        var successMessage = document.getElementById('message');
+        var submitButton = document.getElementById('btn');
+        var captchaDiv = document.getElementById('captchaDiv');
+
+        if (smsCodeInput.value.trim() == serverGeneratedSMSCode) {
+            handleCorrectSMSCode(captchaInput, errorMessage, successMessage, submitButton);
+        } else {
+            handleIncorrectSMSCode(captchaInput, errorMessage, successMessage, submitButton, captchaDiv);
+        }
+    }
+
+    function handleCorrectSMSCode(captchaInput, errorMessage, successMessage, submitButton) {
+        errorMessage.style.display = 'none';
+        successMessage.style.display = 'block';
+        submitButton.type = 'submit';
+        captchaInput.removeAttribute('required');
+    }
+
+    function handleIncorrectSMSCode(captchaInput, errorMessage, successMessage, submitButton, captchaDiv) {
+        errorMessage.style.display = 'block';
+        successMessage.style.display = 'none';
+        captchaInput.setAttribute('required', 'required');
+        submitButton.type = 'button';
+
+        var captchaRequired = document.getElementById('captchaDiv');
+        if (captchaRequired.style.display === 'block') {
+            document.getElementById('captchaImage').src = '{% url "generate_captcha" %}';
+        }
+    }
+</script>
+
+{% endblock content %}
+
+
+
+
+
