@@ -63,9 +63,43 @@
                 Rad etildi
             </a>
         </div>
-    </div>
+    </div><br>
+    
 </div>
-
+<div  class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+    <canvas id="myChart13" style=" display: block; height: 300px;" width="600" height="300" class="chartjs-render-monitor"></canvas>
+</div>  
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var xValues = [100,200,300,400,500,600,700,800,900,1000];
+    
+    new Chart("myChart13", {
+      type: "line",
+      data: {
+        labels: xValues,
+        datasets: [{ 
+          data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+          borderColor: " green",
+          fill: false
+        }, { 
+          data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+          borderColor: "blue",
+          fill: false
+        }, { 
+          data: [200,750,2040,5100,4580,4000,2100,1050,300,180],
+          borderColor: "yellow",
+          fill: false
+        }, { 
+          data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+          borderColor: "red",
+          fill: false
+        }]
+      },
+      options: {
+        legend: {display: false}
+      }
+    });
+    </script>
 <!-- /Stats Row Ends Here -->
 {% endblock content %}
 

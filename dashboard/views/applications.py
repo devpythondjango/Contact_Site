@@ -1,13 +1,18 @@
 from django.shortcuts import render
 from contact.models import Application, ApplicationCreate, Tuman, HujumTuri
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import HttpResponse
 from openpyxl import Workbook
 from openpyxl.writer.excel import save_virtual_workbook
 from .views import login_decorator
 from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Border, Side
+import os
+from docx import Document
+from django.http import FileResponse, HttpResponse
+from django.conf import settings
+import mimetypes
+
 
 @login_decorator
 def tablitsa(request):
@@ -34,7 +39,7 @@ def tablitsa(request):
     status_choices = ApplicationCreate.STATUS_CHOICES
     hujumturi = HujumTuri.objects.all()
 
-    paginator = Paginator(application, 6)
+    paginator = Paginator(application, 15)
     page = request.GET.get('page')
 
     try:
@@ -43,6 +48,7 @@ def tablitsa(request):
         applications = paginator.page(1)
     except EmptyPage:
         applications = paginator.page(paginator.num_pages)
+
 
     ctx = {'applications': applications, 'tumans': tumans, 'status_choices': status_choices, 'hujumturi': hujumturi}
     return render(request, 'dashboard/tablitsa.html', ctx)
@@ -106,5 +112,61 @@ def export_to_excel(request):
     response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
     response['Content-Disposition'] = 'attachment; filename=arizalar.xlsx'
     response.write(save_virtual_workbook(wb))
+
+    return response
+
+
+@login_decorator
+def export_to_word(request, pk):
+    # Odatiy talablar uchun so'rovni oling
+    applications = Application.objects.select_related('hujumturi', 'district', 'app_create').get(pk=pk)
+
+    # Create a new Word document
+    document = Document()
+
+    # Add a title to the document
+    document.add_heading('Arizalar Ro`yxati', level=1)
+
+    # Add a table to the document
+    table = document.add_table(rows=1, cols=21)
+    table.autofit = True
+
+    # Add column headers to the table
+    column_headers = ['Ism familiya', 'Telefon no`mer', 'Tug`ilgan yili', 'Passpor seriyasi', 'Tuman', 'Manzil',
+                      'Jins', 'Hujum turi', 'Plastik raqami', 'Plastik raqami gumondor', 'Gumondor ismi familiyasi',
+                      'Gumondor telefon raqami', 'Pul yechilgan sana', 'Yechib olingan summa',
+                      'Shaxs ishlatgan ilova', 'Gumodor ishlatgan ilova', 'Shaxs yozgan qisqa mazmuni', 'Status']
+    for col_num, header_text in enumerate(column_headers):
+        table.cell(0, col_num).text = header_text
+
+    # Add data rows to the table
+    for row_num, application in enumerate(applications):
+        row = table.add_row()
+        row.cells[0].text = f"{application.first_name} {application.last_name} {application.surname}"
+        row.cells[1].text = application.phone
+        row.cells[2].text = str(application.birthday)
+        row.cells[3].text = application.passport_serial
+        row.cells[4].text = application.district.tuman_name
+        row.cells[5].text = application.address
+        row.cells[6].text = application.gender
+        row.cells[7].text = application.hujumturi.hujum_name
+        row.cells[8].text = application.plastikraqam_ozi
+        row.cells[9].text = application.plastikraqam_gumondor
+        row.cells[10].text = application.full_name_gumondor
+        row.cells[11].text = application.phone_gumondor
+        row.cells[12].text = str(application.vaqt)
+        row.cells[13].text = f"{application.summa} so'm"
+        row.cells[15].text = application.ilova
+        row.cells[16].text = application.ilova_gumondor
+        row.cells[17].text = application.text
+        row.cells[18].text = application.app_create.status
+        # Add actions (view, edit, download) links to the last column
+        actions = row.cells[20].paragraphs[0]
+        actions.add_run(f"{application.id}")  # Assuming you want to link to the application details page
+
+    # Create a response with the Word document
+    response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+    response['Content-Disposition'] = 'attachment; filename=shaxs.docx'
+    document.save(response)
 
     return response

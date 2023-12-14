@@ -10,10 +10,11 @@ urlpatterns = [
     path('logout/', views.logout_user, name="logout"),
     path('tablitsa/', applications.tablitsa, name="tablitsa"),
     path('export_to_excel/', applications.export_to_excel, name='export_to_excel'),
+    path('export_to_word/<int:pk>/', applications.export_to_word, name='export_to_word_id'),
 
     path('application/<int:pk>/view/', appli_views.ariza_view, name='application_view'),
     path('application/<int:pk>/edit/', appli_views.ariza_edit, name='application_edit'),
-    path('export_to_excel/<int:pk>', appli_views.export_to_excel_id, name='export_to_excel_id'),
+    path('export_to_excel/<int:pk>/', appli_views.export_to_excel_id, name='export_to_excel_id'),
 
     path('tablitsa/yangi/', status.status_yangi, name="status_yangi"),
     path('yangi/export_to_excel_status1/', status.export_to_excel_status1, name='export_to_excel_status1'),

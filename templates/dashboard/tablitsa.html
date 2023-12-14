@@ -130,14 +130,17 @@
                     <td class="border px-4 py-2">{{application.ilova_gumondor}}</td>
                     <td class="border px-4 py-2">{{application.text}}</td>
                     <td class="border px-4 py-2">{{application.app_create.status}}</td>
-                    <td class="border px-4 py-2">
+                    <td class="border">
                         <a href="{% url 'application_view' pk=application.id %}"
-                           class=" cursor-pointer rounded p-1 mx-1 text-white" style="color: rgb(73, 74, 74);">
+                           class="text-white" style="color: rgb(73, 74, 74);">
                             <i class="fas fa-eye"></i>
                         </a><br>
                         <a href="{% url 'application_edit' pk=application.id %}"
-                           class=" cursor-pointer rounded p-1 mx-1 text-white" style="color: rgb(73, 74, 74);">
+                           class="text-white" style="color: rgb(73, 74, 74);">
                             <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="../../media/Qaror.docx" class="text-blue" style="color: rgb(73, 74, 74);">
+                            <i class="fas fa-download"></i>
                         </a>
                     </td>
                 </tr>

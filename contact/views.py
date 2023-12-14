@@ -57,7 +57,7 @@ def ariza(request):
         forms = ApplicationForm(request.POST, request.FILES)
         if forms.is_valid():
             sms_code = str(random.randint(100000, 999999))
-            # send_sms_to_user(request.POST['phone'], sms_code)
+            send_sms_to_user(request.POST['phone'], sms_code)
             print(sms_code)
 
             # Convert date objects to strings
@@ -145,17 +145,17 @@ def save_uploaded_file(uploaded_file):
 #     context = {'sms_verification_form': sms_verification_form, 'kod': kod}
 #     return render(request, 'users/smsCode.html', context)
 
-def generate_captcha_image(request):
-    width, height = 150, 50
-    image = Image.new("RGB", (width, height), (73, 255, 255))
-    draw = ImageDraw.Draw(image)
-    font = ImageFont.load_default()
-    captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-    draw.text((10, 10), captcha_text, font=font, fill=(0, 0, 0))
-    request.session['captcha_text'] = captcha_text
-    response = HttpResponse(content_type="image/png")
-    image.save(response, "PNG")
-    return response
+# def generate_captcha_image(request):
+#     width, height = 150, 50
+#     image = Image.new("RGB", (width, height), (73, 255, 255))
+#     draw = ImageDraw.Draw(image)
+#     font = ImageFont.load_default()
+#     captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+#     draw.text((10, 10), captcha_text, font=font, fill=(0, 0, 0))
+#     request.session['captcha_text'] = captcha_text
+#     response = HttpResponse(content_type="image/png")
+#     image.save(response, "PNG")
+#     return response
 
 def verify_sms_code(request):
     if request.method == 'POST':
@@ -211,3 +211,19 @@ def verify_sms_code(request):
 #     response = HttpResponse(content_type="image/png")
 #     image.save(response, "PNG")
 #     return response
+
+def handle_uploaded_file(uploaded_file):
+    # Fayl nomi va joylashuvi
+    file_name = uploaded_file.name
+    file_path = f"uploads/{file_name}"
+
+    # Tekshirish
+    if default_storage.exists(file_path):
+        return HttpResponseBadRequest('Bu nomda fayl allaqachon mavjud.')
+
+    # Faylni serverga yuklab olish
+    with default_storage.open(file_path, 'wb') as destination:
+        for chunk in uploaded_file.chunks():
+            destination.write(chunk)
+
+    return file_path

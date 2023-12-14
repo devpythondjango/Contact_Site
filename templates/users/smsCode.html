@@ -21,9 +21,6 @@
                             <div id="message" style="color: blue; display: none;">
                                 SMS kod to'g'ri <br>
                                 {{ sms_verification_form.captcha }} <br>
-
-                                <img id="captchaImage" src="{% url 'generate_captcha' %}" alt="Captcha">
-                                <input class="form-control" type="text" id="captcha" name="captcha" required>
                             </div>
                             <div id="error-message" style="color: red; display: none;">
                                 SMS kod xato!

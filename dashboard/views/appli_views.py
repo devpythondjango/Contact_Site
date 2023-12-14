@@ -8,7 +8,7 @@ from dashboard.forms import ApplicationCreateForm
 from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Border, Side
-
+from docx import Document
 
 @login_decorator
 def export_to_excel_id(request, pk):
@@ -96,3 +96,7 @@ def ariza_edit(request, pk):
         "form": form
     }
     return render(request, 'dashboard/ariza_edit.html', ctx)
+
+
+
+
