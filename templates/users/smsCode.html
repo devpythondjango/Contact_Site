@@ -20,10 +20,11 @@
                             </div>
                             <div id="message" style="color: blue; display: none;">
                                 SMS kod to'g'ri <br>
-                                {{ sms_verification_form.captcha }} <br>
+                                 <br>
                             </div>
                             <div id="error-message" style="color: red; display: none;">
                                 SMS kod xato!
+                                {{ sms_verification_form.captcha }}
                             </div>
                         </div>
                     </div>
@@ -59,7 +60,6 @@
         errorMessage.style.display = 'none';
         successMessage.style.display = 'block';
         submitButton.type = 'submit';
-        captchaInput.removeAttribute('required');
     }
 
     function handleIncorrectSMSCode(captchaInput, errorMessage, successMessage, submitButton, captchaDiv) {
@@ -68,10 +68,6 @@
         captchaInput.setAttribute('required', 'required');
         submitButton.type = 'button';
 
-        var captchaRequired = document.getElementById('captchaDiv');
-        if (captchaRequired.style.display === 'block') {
-            document.getElementById('captchaImage').src = '{% url "generate_captcha" %}';
-        }
     }
 </script>
 
